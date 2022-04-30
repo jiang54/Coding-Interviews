@@ -1,0 +1,29 @@
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+#
+# 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+#
+# 
+# @param pre int整型一维数组 
+# @param vin int整型一维数组 
+# @return TreeNode类
+#
+class Solution:
+    def reConstructBinaryTree(self , pre: List[int], vin: List[int]) -> TreeNode:
+        # write code here
+        index = {val:i for i,val in enumerate(vin)}
+        def construct(preRootId,inleft,inright):
+            if inleft > inright:
+                return None
+            rootValue = pre[preRootId]
+            inRootId = index[rootValue]
+            leftSize = inRootId - inleft
+            
+            root = TreeNode(rootValue)
+            root.left = construct(preRootId+1,inleft,inRootId-1)
+            root.right = construct(preRootId+1+leftSize,inRootId+1,inright)
+            return root
+        return construct(0,0,len(vin)-1)
