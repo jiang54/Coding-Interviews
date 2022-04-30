@@ -1,0 +1,32 @@
+# -*- coding:utf-8 -*-
+# class TreeLinkNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+#         self.next = None
+class Solution:
+    def GetNext(self, pNode):
+        # write code here
+        #have right node then get right-left*n node
+        if pNode.right:
+            rchild = pNode.right
+            while rchild.left:
+                rchild = rchild.left
+            return rchild
+        #no right node
+        #being child node
+        if pNode.next:
+            #being left node
+            if pNode.next.left == pNode:
+                return pNode.next
+            #being right node
+            parent = pNode.next
+            #parent being right node, then go to next parent check if still right node
+            while parent.next and parent.next.right == parent:
+                parent = parent.next
+            #when it is not the right node then return it(if it is the left node then return real value, if it is the root node, then return 
+            #root node parent which is null)
+            return parent.next
+        return None
+            
