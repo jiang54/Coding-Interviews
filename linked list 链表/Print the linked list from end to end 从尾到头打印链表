@@ -18,3 +18,4 @@ class Solution:
             listNode = listNode.next
         return res[::-1]
 
+ 
