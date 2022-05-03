@@ -14,14 +14,12 @@ class Solution:
     def FindKthToTail(self , pHead: ListNode, k: int) -> ListNode:
         # write code here
         fast = slow = pHead
-        if fast == None:
-            return None
         for i in range(k):
             if fast != None:
                 fast = fast.next
             else:
                 return None
-        while fast !=None:
+        while fast:
             slow = slow.next
             fast = fast.next
         return slow
