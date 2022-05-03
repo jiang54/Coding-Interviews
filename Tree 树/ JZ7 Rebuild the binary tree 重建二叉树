@@ -27,3 +27,4 @@ class Solution:
             root.right = construct(preRootId+1+leftSize,inRootId+1,inright)
             return root
         return construct(0,0,len(vin)-1)
+ 
